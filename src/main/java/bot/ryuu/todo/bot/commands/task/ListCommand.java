@@ -3,6 +3,7 @@ package bot.ryuu.todo.bot.commands.task;
 import bot.ryuu.todo.bot.commands.AbstractCommand;
 import bot.ryuu.todo.data.DataCluster;
 import bot.ryuu.todo.data.task.Task;
+import bot.ryuu.todo.language.Messages;
 import bot.ryuu.todo.theme.Theme;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent;
@@ -40,7 +41,9 @@ public class ListCommand extends AbstractCommand {
 
             slash.deferReply(true).setEmbeds(
                     Theme.main()
-                            .setDescription("Select the task you are interested in").build()
+                            .setDescription(
+                                    Messages.message("LIST", lang(slash))
+                            ).build()
             ).addActionRow(
                     StringSelectMenu.create(code + "_list")
                             .addOptions(options)
@@ -49,7 +52,9 @@ public class ListCommand extends AbstractCommand {
         } else
             slash.deferReply(true).setEmbeds(
                     Theme.main()
-                            .setDescription("The task list is empty").build()
+                            .setDescription(
+                                    Messages.message("LIST_EMPTY", lang(slash))
+                            ).build()
             ).queue();
     }
 
@@ -73,7 +78,9 @@ public class ListCommand extends AbstractCommand {
 
             button.deferEdit().setEmbeds(
                     Theme.main()
-                            .setDescription("Select the task you are interested in").build()
+                            .setDescription(
+                                    Messages.message("LIST", lang(button))
+                            ).build()
             ).setActionRow(
                     StringSelectMenu.create(code + "_list")
                             .addOptions(options)
@@ -82,7 +89,9 @@ public class ListCommand extends AbstractCommand {
         } else
             button.deferReply(true).setEmbeds(
                     Theme.main()
-                            .setDescription("The task list is empty").build()
+                            .setDescription(
+                                    Messages.message("LIST_EMPTY", lang(button))
+                            ).build()
             ).queue();
     }
 
@@ -99,9 +108,6 @@ public class ListCommand extends AbstractCommand {
                     Button.secondary(code + "_back", "back")
             ).queue();
         } else
-            select.deferReply(true).setEmbeds(
-                    Theme.error()
-                            .setDescription("error occurred").build()
-            ).queue();
+            replyError(select);
     }
 }

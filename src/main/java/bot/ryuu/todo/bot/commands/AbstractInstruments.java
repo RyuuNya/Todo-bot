@@ -6,6 +6,7 @@ import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEve
 import java.util.Optional;
 
 public interface AbstractInstruments {
+
     default Optional<String> getOptionString(SlashCommandInteractionEvent event, String name) {
         if (event.getOption(name) != null)
             return Optional.of(event.getOption(name).getAsString());

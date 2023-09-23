@@ -3,6 +3,7 @@ package bot.ryuu.todo.bot.commands.task;
 import bot.ryuu.todo.bot.commands.AbstractCommand;
 import bot.ryuu.todo.data.DataCluster;
 import bot.ryuu.todo.data.task.Task;
+import bot.ryuu.todo.language.Messages;
 import bot.ryuu.todo.theme.Theme;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent;
@@ -40,7 +41,7 @@ public class RemoveCommand extends AbstractCommand {
 
             slash.deferReply(true).setEmbeds(
                     Theme.main()
-                            .setDescription("Select the tasks you want to delete").build()
+                            .setDescription(Messages.message("REMOVE", lang(slash))).build()
             ).addActionRow(
                     StringSelectMenu.create(code + "_remove")
                             .setMaxValues(50)
@@ -48,10 +49,7 @@ public class RemoveCommand extends AbstractCommand {
                             .build()
             ).queue();
         } else
-            slash.deferReply(true).setEmbeds(
-                    Theme.main()
-                            .setDescription("The task list is empty").build()
-            ).queue();
+            replyError(slash);
     }
 
     @Override
@@ -66,7 +64,7 @@ public class RemoveCommand extends AbstractCommand {
     private void buttonOkay(ButtonInteractionEvent button) {
         button.deferReply(true).setEmbeds(
                 Theme.main()
-                        .setDescription("Mmm, is something wrong?").build()
+                        .setDescription(Messages.message("NOTHING", lang(button))).build()
         ).queue();
     }
 
@@ -88,7 +86,7 @@ public class RemoveCommand extends AbstractCommand {
 
         select.deferEdit().setEmbeds(
                 Theme.main()
-                        .setDescription("Selected tasks have been deleted").build()
+                        .setDescription(Messages.message("REMOVED", lang(select))).build()
         ).setActionRow(
                 Button.secondary(code + "_okay", "okay")
         ).queue();

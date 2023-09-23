@@ -9,6 +9,8 @@ import jakarta.persistence.Id;
 import lombok.*;
 import net.dv8tion.jda.api.entities.MessageEmbed;
 
+import java.awt.*;
+
 @Getter
 @Setter
 @Builder
@@ -25,13 +27,15 @@ public class Task {
 
     private String serverId;
 
-    public Task save(DataCluster cluster) {
+    private Color color;
+
+    public void save(DataCluster cluster) {
         cluster.getTaskRepository().save(this);
-        return this;
     }
 
     public MessageEmbed info() {
         return Theme.main()
+                .setColor(color)
                 .setTitle(name)
                 .setDescription(description)
                 .build();

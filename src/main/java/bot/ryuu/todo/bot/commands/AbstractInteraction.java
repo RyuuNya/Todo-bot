@@ -7,6 +7,7 @@ import net.dv8tion.jda.api.events.interaction.component.EntitySelectInteractionE
 import net.dv8tion.jda.api.events.interaction.component.StringSelectInteractionEvent;
 
 public interface AbstractInteraction {
+
     default void slashInteraction(SlashCommandInteractionEvent slash) {
 
     }

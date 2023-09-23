@@ -1,5 +1,6 @@
 package bot.ryuu.todo.data.server;
 
+import bot.ryuu.todo.language.LanguageType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.*;
@@ -17,6 +18,8 @@ public class Server {
     private int complete;
     private int allTask;
     private int members;
+
+    private LanguageType language;
 
     public void incComplete(int increment) {
         this.complete += increment;

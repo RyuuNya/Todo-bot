@@ -4,6 +4,7 @@ import bot.ryuu.todo.bot.commands.AbstractCommand;
 import bot.ryuu.todo.data.DataCluster;
 import bot.ryuu.todo.data.server.Server;
 import bot.ryuu.todo.data.task.Task;
+import bot.ryuu.todo.language.Messages;
 import bot.ryuu.todo.theme.Theme;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.events.interaction.component.ButtonInteractionEvent;
@@ -41,7 +42,9 @@ public class CompleteCommand extends AbstractCommand {
 
             slash.deferReply(true).setEmbeds(
                     Theme.main()
-                            .setDescription("Select the tasks you want to perform").build()
+                            .setDescription(
+                                    Messages.message("COMPLETE", lang(slash))
+                            ).build()
             ).addActionRow(
                     StringSelectMenu.create(code + "_complete")
                             .addOptions(options)
@@ -50,7 +53,9 @@ public class CompleteCommand extends AbstractCommand {
         } else
             slash.deferReply(true).setEmbeds(
                     Theme.main()
-                            .setDescription("The task list is empty").build()
+                            .setDescription(
+                                    Messages.message("LIST_EMPTY", lang(slash))
+                            ).build()
             ).queue();
     }
 
@@ -66,7 +71,9 @@ public class CompleteCommand extends AbstractCommand {
     private void buttonOkay(ButtonInteractionEvent button) {
         button.deferReply(true).setEmbeds(
                 Theme.main()
-                        .setDescription("Mmm, is something wrong?").build()
+                        .setDescription(
+                                Messages.message("NOTHING", lang(button))
+                        ).build()
         ).queue();
     }
 
@@ -96,14 +103,18 @@ public class CompleteCommand extends AbstractCommand {
 
             select.deferEdit().setEmbeds(
                     Theme.main()
-                            .setDescription("The tasks have been completed").build()
+                            .setDescription(
+                                    Messages.message("COMPLETED", lang(select))
+                            ).build()
             ).setActionRow(
                     Button.secondary(code + "_okay", "okay")
             ).queue();
         } else
             select.deferReply(true).setEmbeds(
                     Theme.main()
-                            .setDescription("The task list is empty").build()
+                            .setDescription(
+                                    Messages.message("LIST_EMPTY", lang(select))
+                            ).build()
             ).queue();
     }
 }

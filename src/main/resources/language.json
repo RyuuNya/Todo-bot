@@ -1,0 +1,59 @@
+{
+  "params" : [
+    {
+      "name" : "NEW",
+      "en" : "The task was successfully created, you can view it using the `/list` command",
+      "ru" : "Задание была успешно создано, просмотреть его можно с помощью команды `/list`"
+    },
+
+    {
+      "name" : "REMOVE",
+      "en" : "Select the tasks you want to delete",
+      "ru" : "Выберите задачи, которые хотите удалить"
+    },
+    {
+      "name" : "REMOVED",
+      "en" : "Selected tasks have been deleted",
+      "ru" : "Выбранные задания были удалены"
+    },
+
+    {
+      "name" : "LIST",
+      "en" : "Select the task you are interested in",
+      "ru" : "Выберите интересующие вас задания"
+    },
+    {
+      "name" : "LIST_EMPTY",
+      "en" : "The task list is empty",
+      "ru" : "Список заданий пуст"
+    },
+
+    {
+      "name" : "COMPLETE",
+      "en" : "Select the tasks you want to perform",
+      "ru" : "Выберите задания, которые хотите выполнить"
+    },
+    {
+      "name" : "COMPLETED",
+      "en" : "The tasks have been completed",
+      "ru" : "Задания были выполнены"
+    },
+
+    {
+      "name" : "NOTHING",
+      "en" : "Mmm, is something wrong?",
+      "ru" : "Ммм, что-то не так?"
+    },
+
+    {
+      "name" : "ERROR",
+      "en" : "Error occurred",
+      "ru" : "Произошла ошибка"
+    },
+    {
+      "name" : "LANGUAGE",
+      "en" : "The language of the bot has been changed",
+      "ru" : "Язык бота был изменен"
+    }
+  ]
+}

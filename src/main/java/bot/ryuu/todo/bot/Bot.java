@@ -2,6 +2,7 @@ package bot.ryuu.todo.bot;
 
 import bot.ryuu.todo.TodoApplication;
 import bot.ryuu.todo.bot.commands.AbstractCommand;
+import bot.ryuu.todo.bot.commands.system.LangCommand;
 import bot.ryuu.todo.bot.commands.task.CompleteCommand;
 import bot.ryuu.todo.bot.commands.task.ListCommand;
 import bot.ryuu.todo.bot.commands.task.NewCommand;
@@ -9,6 +10,7 @@ import bot.ryuu.todo.bot.commands.task.RemoveCommand;
 import bot.ryuu.todo.bot.listener.TaskListener;
 import bot.ryuu.todo.data.DataCluster;
 import bot.ryuu.todo.data.server.Server;
+import bot.ryuu.todo.language.LanguageType;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.OnlineStatus;
@@ -34,7 +36,9 @@ public class Bot {
                 new NewCommand(cluster),
                 new ListCommand(cluster),
                 new RemoveCommand(cluster),
-                new CompleteCommand(cluster)
+                new CompleteCommand(cluster),
+
+                new LangCommand(cluster)
         );
     }
 
@@ -67,6 +71,7 @@ public class Bot {
                     .allTask(0)
                     .members(0)
                     .complete(0)
+                    .language(LanguageType.RU)
                     .build().save(cluster.getServerRepository());
         });
     }
